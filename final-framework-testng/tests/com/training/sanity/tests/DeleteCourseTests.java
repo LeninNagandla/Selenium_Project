@@ -13,25 +13,19 @@ import org.testng.annotations.Test;
 import com.training.generics.ScreenShot;
 import com.training.pom.AddUserPOM;
 import com.training.pom.AdminPOM;
-import com.training.pom.CourseCatalogPOM;
-import com.training.pom.CoursecreatedPOM;
 import com.training.pom.LoginPOM;
-import com.training.pom.MyCoursesPOM;
-import com.training.pom.UserMyCourcesPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
 
-public class UserCoursecatalogTests {
+public class DeleteCourseTests {
 	private WebDriver driver;
 	private String baseUrl;
 	private LoginPOM loginPOM;
 	private Properties properties;
 	private ScreenShot screenShot;
-	private UserMyCourcesPOM userMyCourse;
-	private CourseCatalogPOM courseCatlog;
-	
-	
+	private AdminPOM adminuserlk;
+	private AddUserPOM addauserlk;
 
 	@BeforeClass
 	public void setUpBeforeClass() throws IOException {
@@ -44,27 +38,21 @@ public class UserCoursecatalogTests {
 		screenShot = new ScreenShot(driver); 
 		// open the browser 
 		driver.get(baseUrl);
-		loginPOM.sendUserName("LeninNagandla7");
-		loginPOM.sendPassword("Lenin@1237");
+		loginPOM.sendUserName("admin");
+		loginPOM.sendPassword("admin@123");
 		loginPOM.clickLoginBtn(); 
 		screenShot.captureScreenShot("First");
 		
 	}
 
 	@Test
-	public void userSubscribeCourse() throws InterruptedException {	
+	public void deleteCourseList() {	
+		adminuserlk = new AdminPOM(driver);
+		adminuserlk.clickCourseListlink();
+		adminuserlk.clickCourseDeleteicon();
 		
-		userMyCourse = new UserMyCourcesPOM(driver);
-		userMyCourse.clickCourseCatalogBtn();
-		courseCatlog = new CourseCatalogPOM(driver);
-		courseCatlog.clickCourseCatalogSearch("SeleniumA");
-		courseCatlog.clickOnSearch();
-		courseCatlog.clickOnSubscribe();
-			
+		
 	}
-	
-	
-	
    
  
 }

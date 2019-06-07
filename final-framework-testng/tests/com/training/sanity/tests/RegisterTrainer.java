@@ -49,12 +49,12 @@ public class RegisterTrainer {
 	@Test(priority=1)
 	public void registerTrainer() {	
 		addauserlk = new AddUserPOM(driver);
-		addauserlk.sendFirstName("Lenin4");
-		addauserlk.sendLastName("Nagandla4");
-		addauserlk.sendEmail("lenin4@demo.com");
-		addauserlk.sendTuserName("LeninNagandla4");
+		addauserlk.sendFirstName("Lenin7");
+		addauserlk.sendLastName("Nagandla7");
+		addauserlk.sendEmail("lenin5@demo.com");
+		addauserlk.sendTuserName("LeninNagandla7");
 		addauserlk.clickradioBtn();
-		addauserlk.sendTpassword("Lenin@1234");
+		addauserlk.sendTpassword("Lenin@1237");
 		addauserlk.dropdownSelectPro();
 		addauserlk.dropdownSelectLan();
 		addauserlk.clickSubmitBtn();

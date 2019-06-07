@@ -26,5 +26,39 @@ private WebDriver driver;
 				
 		//this.addauser.click(); 
 	}
+	
+	@FindBy(linkText="Edit profile")
+	private WebElement usereditprofile;
+	
+	public void clickUserEditProfileLnk() {
+		this.usereditprofile.click();
+		
+	}
+		
+		@FindBy(linkText="SeleniumA")
+		private WebElement usercourseSeleniumA;
+		
+		public void clickUserCourseSeleniumALnk() {
+			this.usercourseSeleniumA.click();
+				
+		}
+		
+		@FindBy(linkText="Tests")
+		private WebElement tests;
+		
+		public void clickonTestsicon() {
+			this.tests.click();
+		
+		}
+		
+		@FindBy(linkText="online quiz")
+		private WebElement onlinequiz;
+		
+		public void userclickOnlineQuiz() {
+			this.onlinequiz.click();
+		
+		}
+		
+		
 
 }

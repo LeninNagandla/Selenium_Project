@@ -22,7 +22,7 @@ import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
 
-public class UserCoursecatalogTests {
+public class UserTakeTestELTC_041Tests {
 	private WebDriver driver;
 	private String baseUrl;
 	private LoginPOM loginPOM;
@@ -30,7 +30,7 @@ public class UserCoursecatalogTests {
 	private ScreenShot screenShot;
 	private UserMyCourcesPOM userMyCourse;
 	private CourseCatalogPOM courseCatlog;
-	
+	private MyCoursesPOM myCourses;
 	
 
 	@BeforeClass
@@ -51,7 +51,8 @@ public class UserCoursecatalogTests {
 		
 	}
 
-	@Test
+	//@Test(dependsOnMethods= {"studentTakeTest"}, alwaysRun=true)
+	@Test(enabled=false)
 	public void userSubscribeCourse() throws InterruptedException {	
 		
 		userMyCourse = new UserMyCourcesPOM(driver);
@@ -63,7 +64,23 @@ public class UserCoursecatalogTests {
 			
 	}
 	
+	@Test(priority=2)
+	public void studentTakeTest() throws InterruptedException {	
+		
+		userMyCourse = new UserMyCourcesPOM(driver);
+		userMyCourse.clickUserCourseSeleniumALnk();
+		userMyCourse.clickonTestsicon();
+		userMyCourse.userclickOnlineQuiz();
+		myCourses = new MyCoursesPOM(driver);
+		myCourses.clickStartTestBtn();
+		myCourses.clickChkRadioAns();
+		myCourses.clickNextQuestionBtn();
+		myCourses.clickChkRadioAns2();
+		myCourses.clickEndtestBtn();
 	
+		
+			
+	}
 	
    
  

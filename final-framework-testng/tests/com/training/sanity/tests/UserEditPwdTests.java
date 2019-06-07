@@ -17,19 +17,20 @@ import com.training.pom.CourseCatalogPOM;
 import com.training.pom.CoursecreatedPOM;
 import com.training.pom.LoginPOM;
 import com.training.pom.MyCoursesPOM;
+import com.training.pom.UserEditProfilePOM;
 import com.training.pom.UserMyCourcesPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
 
-public class UserCoursecatalogTests {
+public class UserEditPwdTests {
 	private WebDriver driver;
 	private String baseUrl;
 	private LoginPOM loginPOM;
 	private Properties properties;
 	private ScreenShot screenShot;
 	private UserMyCourcesPOM userMyCourse;
-	private CourseCatalogPOM courseCatlog;
+	private UserEditProfilePOM userEditProfilePOM;
 	
 	
 
@@ -44,26 +45,26 @@ public class UserCoursecatalogTests {
 		screenShot = new ScreenShot(driver); 
 		// open the browser 
 		driver.get(baseUrl);
-		loginPOM.sendUserName("LeninNagandla7");
-		loginPOM.sendPassword("Lenin@1237");
+		loginPOM.sendUserName("LeninNagandla4");
+		loginPOM.sendPassword("Lenin@1234");
 		loginPOM.clickLoginBtn(); 
 		screenShot.captureScreenShot("First");
 		
 	}
 
-	@Test
-	public void userSubscribeCourse() throws InterruptedException {	
+	@Test(priority=1)
+	public void registerTrainer() throws InterruptedException {	
 		
 		userMyCourse = new UserMyCourcesPOM(driver);
-		userMyCourse.clickCourseCatalogBtn();
-		courseCatlog = new CourseCatalogPOM(driver);
-		courseCatlog.clickCourseCatalogSearch("SeleniumA");
-		courseCatlog.clickOnSearch();
-		courseCatlog.clickOnSubscribe();
+		userMyCourse.clickUserEditProfileLnk();
+		userEditProfilePOM = new UserEditProfilePOM(driver);
+		userEditProfilePOM.sendprofilepwdold("Lenin@1234");
+		userEditProfilePOM.sendprofilepwdNew("Lenin@12344");
+		userEditProfilePOM.sendprofileconfirmpwd("Lenin@12344");
+		userEditProfilePOM.clickSavePwd();
+		
 			
 	}
-	
-	
 	
    
  

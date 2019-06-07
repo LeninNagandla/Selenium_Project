@@ -27,7 +27,12 @@ public class CoursecreatedPOM {
 	private WebElement advanSettings; 
 	
 	@FindBy(xpath="//button[@data-id='add_course_category_code']")
-	private WebElement categorylistbox;		
+	private WebElement categorylistbox;	
+	
+	@FindBy(xpath="//button[@data-id='update_course_category_code']")
+	private WebElement admincategorylistbox;	
+	
+	//button[@data-id='update_course_category_code']
 	
 	@FindBy(xpath="//span[contains(text(),'Projects (PROJ)')]")
 	private WebElement selectProjects;
@@ -43,6 +48,29 @@ public class CoursecreatedPOM {
 	
 	@FindBy(id="add_course_submit")
 	private WebElement addCoursebtn;
+	
+	@FindBy(id="update_course_title")
+	private WebElement adminCreateCourseTitle;
+	
+	@FindBy(id="visual_code")
+	private WebElement adminCreateCourseCode;
+	
+	//@FindBy(xpath="//span[@aria-owns='select2-course_teachers-results']")	
+	//@FindBy(xpath="//select[@id='course_teachers']")
+	
+	@FindBy(xpath="//ul[@class='select2-selection__rendered']")
+	private WebElement courseTeachers;
+	
+	@FindBy(xpath="//*[contains(text(),'Lenin3')]")
+	private WebElement lenin3Teacher;
+	
+	@FindBy(xpath="//button[@data-id='update_course_course_language']")
+	private WebElement language;
+	
+	@FindBy(id="update_course_submit")
+	private WebElement adminCourseCreatebtn;
+	
+	
 	
 	public void clkonCreateacourse() {
 		this.createNewCourse.click();
@@ -76,5 +104,45 @@ public class CoursecreatedPOM {
 		public void clickCreateCourseBtn() {
 			this.addCoursebtn.click();
 		}
+		
+		public void sendAdminCreateCourseTitle(String title) {
+			this.adminCreateCourseTitle.clear();
+			this.adminCreateCourseTitle.sendKeys(title);
+		}
+		
+		public void sendAdminCreateCourseCode(String code) {
+			this.adminCreateCourseCode.clear();
+			this.adminCreateCourseCode.sendKeys(code);
+		}
+		
+		public void clickandSendCourseTeachers() {
+			Actions action = new Actions(this.driver);
+			action.moveToElement(courseTeachers).click().build().perform();
+			action.sendKeys("Lenin").build().perform();
+			action.moveToElement(lenin3Teacher).click().build().perform();
+		}
+		
+		public void dropdownAdminCategory() {
+			Actions action = new Actions(this.driver);
+			action.moveToElement(admincategorylistbox).click().build().perform();
+			action.sendKeys("Projects (PROJ)").build().perform();
+			//action.sendKeys(categorylistbox, Keys.ARROW_DOWN);
+			action.moveToElement(selectProjects).click().build().perform();
+			
+		}
+		
+		public void dropdownAdminLang() {
+			Actions action = new Actions(this.driver);
+			action.moveToElement(language).click().build().perform();
+			action.sendKeys("English").build().perform();
+			action.moveToElement(Englangselect).click().build().perform();
+			
+		}
+		
+		public void clickAdminCreateCourseBtn() {
+			this.adminCourseCreatebtn.click();
+		}
+		
+		
 	
 }

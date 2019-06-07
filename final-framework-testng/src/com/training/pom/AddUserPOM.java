@@ -41,6 +41,7 @@ public class AddUserPOM {
 	//button[@role='button']	
 	@FindBy(xpath="//*[@data-id='status_select']")
 	private WebElement dpdownselectprobtn;
+	
 	@FindBy(xpath="//span[contains(text(),'Trainer')]")
 	private WebElement dpdownselecttrainer;
 	
@@ -63,7 +64,7 @@ public class AddUserPOM {
 	
 	public void sendLastName(String lastName) {
 		this.lastName.clear(); 
-		this.lastName.sendKeys(lastName); 
+		this.lastName.sendKeys(lastName);
 	}
 	
 	public void sendEmail(String emailUser) {
