@@ -3,12 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.training.sanity.tests.TeacherCreateGroupELTC_038Tests">
+      <class name="com.training.regression.tests.ELTC_070_Tests">
         <methods>
           <include name="setUpBeforeClass"/>
-          <include name="teacherCreateGroups"/>
+          <include name="studentLoginAndTakeTest" invocation-numbers="0"/>
+          <include name="setUp"/>
         </methods>
-      </class> <!-- com.training.sanity.tests.TeacherCreateGroupELTC_038Tests -->
+      </class> <!-- com.training.regression.tests.ELTC_070_Tests -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

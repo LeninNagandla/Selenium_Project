@@ -26,6 +26,9 @@ public class AddUserPOM {
 	@FindBy(id="email")
 	private WebElement emailUser; 
 	
+	@FindBy(id="phone")
+	private WebElement phoneNumber; 
+	
 	@FindBy(id="username")
 	private WebElement tuserName; 
 	
@@ -57,6 +60,9 @@ public class AddUserPOM {
 	@FindBy(name="submit")
 	private WebElement submit;
 	
+	@FindBy(xpath="//div[starts-with(text(),'The user has been added: ')]")
+	private WebElement addUserMess;
+	
 	public void sendFirstName(String firstName) {
 		this.firstName.clear();
 		this.firstName.sendKeys(firstName);
@@ -71,6 +77,12 @@ public class AddUserPOM {
 		this.emailUser.clear(); 
 		this.emailUser.sendKeys(emailUser); 
 	}
+	
+	public void sendPhoneNo(String phoneNumber) {
+		this.phoneNumber.clear(); 
+		this.phoneNumber.sendKeys(phoneNumber); 
+	}
+	
 	public void sendTuserName(String tuserName) {
 		this.tuserName.clear();
 		this.tuserName.sendKeys(tuserName);
@@ -115,5 +127,40 @@ public class AddUserPOM {
 		public void clickSubmitBtn() {
 			this.submit.click();
 		}
+		
+		public String userSuccAddedMess() {
+			return this.addUserMess.getText(); 
+		}
+		
+		public String getFirstName() {
+			
+			return this.firstName.getAttribute("value");
+		}
+		
+		public String getLastName() {
+			
+			return this.lastName.getAttribute("value");
+		}
+		
+		public String getEmail() {
+			
+			return this.emailUser.getAttribute("value"); 
+		}
+		
+		public String getPhoneNo() {
+			
+			return this.phoneNumber.getAttribute("value");
+		}
+		
+		public String getTuserName() {
+			
+			return this.tuserName.getAttribute("value");
+		}
+		
+			
+		public String getTpassword() {
+				
+				return this.tpassword.getAttribute("value") ;
+			}
 	
 }

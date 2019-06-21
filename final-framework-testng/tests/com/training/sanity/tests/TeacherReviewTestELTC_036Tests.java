@@ -64,8 +64,7 @@ public class TeacherReviewTestELTC_036Tests {
 		String expmeassage="Message Sent";
 		String actmessage=reporting.messageSentText();
 		System.out.println(reporting.messageSentText());
-		Assert.assertEquals(actmessage, expmeassage);
-		
+		Assert.assertEquals(actmessage, expmeassage);		
 	}
 	
    

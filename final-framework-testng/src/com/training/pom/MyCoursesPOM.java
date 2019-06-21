@@ -17,6 +17,13 @@ public class MyCoursesPOM {
 		PageFactory.initElements(driver, this);
 	}
 	
+	@FindBy(linkText="My courses")
+	private WebElement mycourses;
+	
+	public void mycoursesLnk() {
+		this.mycourses.click(); 
+	}
+	
 	@FindBy(xpath="//a[@class='btn btn-default']")
 	private WebElement addIntroductionIcon; 
 	
@@ -174,7 +181,7 @@ public class MyCoursesPOM {
 	private WebElement selectyear;
 	
 	//@FindBy(xpath="//table[@class=\"ui-datepicker-calendar\"]//tbody/tr[2]/td[3]")
-	@FindBy(xpath="//table//tbody/tr[2]/td[2]")
+	@FindBy(xpath="//table//tbody/tr[4]/td[4]")
 	private WebElement selectday;
 	
 	//div/dl/dd[2]/div/span  //xpath to select hour
@@ -280,6 +287,19 @@ public class MyCoursesPOM {
  		driver.switchTo().defaultContent();
  		
  		}
+     @FindBy(xpath="//tbody/tr/td[5]/input[@id='question_admin_form_weighting[1]']")
+     WebElement answer1;
+     public void sendAnswerScore1(String answer1score) {
+    	this.answer1.clear(); 
+  		this.answer1.sendKeys(answer1score);
+  	}
+     @FindBy(xpath="//tbody/tr[2]/td[5]/input[@id='question_admin_form_weighting[2]']")
+     WebElement answer2;
+     public void sendAnswerScore2(String answer2score) {
+    	this.answer2.clear(); 
+  		this.answer2.sendKeys(answer2score);
+  	}
+     
      
      @FindBy(id="submit-question")
      private WebElement addQuestiontoTest;
@@ -288,10 +308,15 @@ public class MyCoursesPOM {
  		this.addQuestiontoTest.click();
  	}
 	
+     @FindBy(xpath="//input[@type='radio' and @value='1']")
+     private WebElement optionradiobtn1;
+     public void clickOptionRadioBtn1() {
+  		this.optionradiobtn1.click();
+  	}
      @FindBy(xpath="//input[@type='radio' and @value='2']")
-     private WebElement optionradiobtn;
-     public void clickOptionRadioBtn() {
-  		this.optionradiobtn.click();
+     private WebElement optionradiobtn2;
+     public void clickOptionRadioBtn2() {
+  		this.optionradiobtn2.click();
   	}
      
      @FindBy(xpath="//img[@title='Preview']")
@@ -531,7 +556,7 @@ public class MyCoursesPOM {
    	}
       
     
-     @FindBy(xpath="//table[@id='results']/tbody/tr[6]/td[12]/div/a")
+     @FindBy(xpath="//table[@id='results']/tbody/tr[2]/td[12]/div/a")
   	private WebElement gradeicon;
     	
        public void clickGradeActivityIcon() {

@@ -1,4 +1,4 @@
-package com.training.sanity.tests;
+package com.training.regression.tests;
 
 
 import java.io.FileInputStream;
@@ -6,22 +6,28 @@ import java.io.IOException;
 import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import com.training.dataproviders.LoginDataProviders;
 import com.training.generics.ScreenShot;
 import com.training.pom.AddUserPOM;
 import com.training.pom.AdminPOM;
 import com.training.pom.CourseCatalogPOM;
 import com.training.pom.CoursecreatedPOM;
 import com.training.pom.LoginPOM;
+import com.training.pom.LogoutPOM;
 import com.training.pom.MyCoursesPOM;
+import com.training.pom.ReportingPOM;
+import com.training.pom.UserMyCourcesPOM;
 import com.training.utility.DriverFactory;
 import com.training.utility.DriverNames;
 
 
-public class TeacherCreatTestELTC_032Tests {
+public class ELTC_070_Tests {
 	private WebDriver driver;
 	private String baseUrl;
 	private LoginPOM loginPOM;
@@ -29,6 +35,10 @@ public class TeacherCreatTestELTC_032Tests {
 	private ScreenShot screenShot;
 	private MyCoursesPOM myCourses;
 	private CourseCatalogPOM coursecatalogPOM;
+	private UserMyCourcesPOM userMyCourse;
+	private CourseCatalogPOM courseCatlog;
+	private ReportingPOM reporting;
+	private LogoutPOM logoutPOM;
 	
 
 	@BeforeClass
@@ -36,21 +46,31 @@ public class TeacherCreatTestELTC_032Tests {
 		properties = new Properties();
 		FileInputStream inStream = new FileInputStream("./resources/others.properties");
 		properties.load(inStream);
+		
+		
+	}
+	
+
+	@BeforeMethod
+	public void setUp() throws Exception {
 		driver = DriverFactory.getDriver(DriverNames.CHROME);
-		loginPOM = new LoginPOM(driver); 
+		loginPOM = new LoginPOM(driver);
 		baseUrl = properties.getProperty("baseURL");
-		screenShot = new ScreenShot(driver); 
-		// open the browser 
+		screenShot = new ScreenShot(driver);
+		// open the browser
 		driver.get(baseUrl);
-		loginPOM.sendUserName("LeninNagandla3");
+	/*	loginPOM.sendUserName("LeninNagandla3");
 		loginPOM.sendPassword("Lenin@1233");
-		loginPOM.clickLoginBtn(); 
-		screenShot.captureScreenShot("First");
+		loginPOM.clickLoginBtn(); */
 		
 	}
 
-	@Test(priority=1)
-	public void createOnlieTest(){	
+	
+@Test(priority=1, dataProvider = "excel-inputs", dataProviderClass = LoginDataProviders.class)
+	public void teacherLoginTest(String userName, String password) {
+		loginPOM.sendUserName(userName);
+		loginPOM.sendPassword(password);
+		loginPOM.clickLoginBtn();
 		myCourses = new MyCoursesPOM(driver);
 		myCourses.clickCourseCreated();
 		myCourses.clickonTestsicon();
@@ -68,6 +88,8 @@ public class TeacherCreatTestELTC_032Tests {
 		myCourses.sendIframeoption2("java");
 		myCourses.sendIframeoption3("c");
 		myCourses.sendIframeoption4("c#");
+		myCourses.sendAnswerScore1("1");
+		myCourses.clickOptionRadioBtn1();
 		myCourses.clickaddQuestiontoTestBtn();
 		myCourses.clickMultipleChoiceIcon();
 	    myCourses.sendQuestionName("which language are you using in selenium");
@@ -75,6 +97,7 @@ public class TeacherCreatTestELTC_032Tests {
 		myCourses.sendIframeoption2("java");
 		myCourses.sendIframeoption3("c");
 		myCourses.sendIframeoption4("c#");
+		myCourses.sendAnswerScore2("1");
 		myCourses.clickOptionRadioBtn2();
 		myCourses.clickaddQuestiontoTestBtn();
 		myCourses.clickPreviewIcon();
@@ -83,12 +106,38 @@ public class TeacherCreatTestELTC_032Tests {
 		myCourses.clickNextQuestionBtn();
 		myCourses.clickChkRadioAns2();
 		myCourses.clickEndtestBtn();
+		logoutPOM = new LogoutPOM(driver);
+		logoutPOM.clickonUserProfileIcon();
+		logoutPOM.clickonLogout();
 		
-		
-	//	myCourses.clickaddQuestionIcon();
-	//	myCourses.clickcreateQuestionBtn();
+	} 
+
+	@Test(priority=2, dataProvider = "excel-inputs3", dataProviderClass = LoginDataProviders.class)
+	public void studentLoginAndTakeTest(String userName, String password) {
+		loginPOM.sendUserName(userName);
+		loginPOM.sendPassword(password);
+		loginPOM.clickLoginBtn();	
+		myCourses = new MyCoursesPOM(driver);
+		myCourses.clickReportingLnk();
+		reporting = new ReportingPOM(driver);
+		reporting.clickfollowedTeachersLnk();
+		reporting.sendKeywordTextBox("Lenin");
+		reporting.clicksearchUserBtn();
+		reporting.clickIconoftheStudent2();
+		reporting.clickIconoftheCourse();
+		reporting.clickQuizIconTestSection();
+		reporting.clickSendEmailcheckbox();
+		reporting.clickCorrectTestBtn();
+		String expmeassage="Message Sent";
+		String actmessage=reporting.messageSentText();
+		System.out.println(reporting.messageSentText());
+		Assert.assertEquals(actmessage, expmeassage);
+		reporting.clickCourseNamelink();
 		
 	}
+	
+	
+	
 	
    
  

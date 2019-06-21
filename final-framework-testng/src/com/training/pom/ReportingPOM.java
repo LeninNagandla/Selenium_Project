@@ -102,6 +102,14 @@ public class ReportingPOM {
 		this.searchUser.click();
 	} 
 	
+	@FindBy(linkText="Followed teachers")
+	
+	private WebElement followedTeachers;
+	
+	public void clickfollowedTeachersLnk() {
+		this.followedTeachers.click();
+	} 
+	
 	
 }
 	
