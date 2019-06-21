@@ -65,7 +65,7 @@ public class ELTC_070_Tests {
 		
 	}
 
-	
+	/*
 @Test(priority=1, dataProvider = "excel-inputs", dataProviderClass = LoginDataProviders.class)
 	public void teacherLoginTest(String userName, String password) {
 		loginPOM.sendUserName(userName);
@@ -110,7 +110,7 @@ public class ELTC_070_Tests {
 		logoutPOM.clickonUserProfileIcon();
 		logoutPOM.clickonLogout();
 		
-	} 
+	} */
 
 	@Test(priority=2, dataProvider = "excel-inputs3", dataProviderClass = LoginDataProviders.class)
 	public void studentLoginAndTakeTest(String userName, String password) {
@@ -124,7 +124,7 @@ public class ELTC_070_Tests {
 		reporting.sendKeywordTextBox("Lenin");
 		reporting.clicksearchUserBtn();
 		reporting.clickIconoftheStudent2();
-		reporting.clickIconoftheCourse();
+		reporting.clickIconoftheCourseSeleniumA();
 		reporting.clickQuizIconTestSection();
 		reporting.clickSendEmailcheckbox();
 		reporting.clickCorrectTestBtn();

@@ -46,6 +46,12 @@ public class ReportingPOM {
 		this.iconofthecourse.click(); 
 	} 
 	
+	@FindBy(xpath="//table/tbody/tr[9]/td[7]/a")
+	private WebElement iconofthecourseSeleniumA;	
+	
+	public void clickIconoftheCourseSeleniumA() {
+		this.iconofthecourseSeleniumA.click(); 
+	} 
 	
 	
 	@FindBy(xpath="//table/tbody/tr[1]/td[5]/a")
